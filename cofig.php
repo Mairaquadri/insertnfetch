@@ -14,7 +14,7 @@ if($con->connect_error){
 }
 else{
     echo '<script>
-    alert("connection sucessfull");
+    // alert("connection sucessfull");
   </script>';
  
 }

@@ -27,7 +27,7 @@ if(isset($_POST['register'])){
   </script>';
 }
    }
-
+  
 
 header('location:showdata.php')
 

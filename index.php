@@ -108,6 +108,8 @@ input {
     background-color: #eaeaea; 
     border-radius: 10px;
     font-size: 20px;
+    cursor: pointer;
+
 }
 
 

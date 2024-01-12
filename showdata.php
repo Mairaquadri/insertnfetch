@@ -13,9 +13,10 @@
             height: 98vh;
             background: url("./image.jpg") center/cover no-repeat;
             overflow-x: hidden;
-            overflow-y: hidden;
+            /* overflow-y: hidden; */
             background-position: center 35%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             margin: 0;
@@ -25,14 +26,15 @@
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
-            width: 95%;
+            width: 80%;
             backdrop-filter: blur(50px);
             border-radius: 10px;
             border: 2px solid rgba(255, 255, 255, 0.1);
             background: rgba(255, 255, 255, 0.1);
             color: white;
-            height: 650px;
-            font-size:larger;
+            height: 400px;
+            font-size:medium;
+            margin-bottom: 20px;
         }
         
         td,
@@ -42,12 +44,30 @@
             padding: 8px;
         }
         .email_style{
-            background-color: gray
-            ;
+            background-color: gray;
         }
+        h1{
+            margin-top: 50px;
+            color:white;
+            text-align: center;
+            font-size: 50px;
+        }
+        .btn{
+                 color: #999;
+                 margin-top: 10px;
+                 margin-bottom: 10px;
+                width: 100%;
+                padding: 18px 15px;
+                background-color: #eaeaea; 
+                border-radius: 10px;
+                font-size: 20px;
+                cursor: pointer;
+    
+}
         
-        
-        
+a{
+    width: 60%;
+}
         @media only screen and (max-width: 768px) {
             body {
                 background-position: center 50%;
@@ -63,7 +83,8 @@
 </head>
 
 <body>
-    <p>
+    <h1>List Of Candidates</h1>
+    
         <?php
         include 'cofig.php';
         $data = $con->query("SELECT * FROM form");
@@ -90,8 +111,8 @@
             echo "<td>" . $row["gender"] . "</td>";
             // echo "<td><a href='delete.php?idth= echo '<td>' . $row['id'] . '</td>';
             // '><i class='fas fa-x'></i></a></td>";
-            echo "<td ><a href='delete.php?idth=" . $row['id'] . "'><i class='fas fa-x'></i></a></td>";
-            echo "<td ><a href='edit.php?id=" . $row['id'] . "'><i class='fas fa-edit'></i></a></td>";
+            echo "<td><a href='delete.php?idth=" . $row['id'] . "' style='color: white;'><i class='fas fa-x'></i></a></td>";
+            echo "<td><a href='edit.php?id=" . $row['id'] . "' style='color: white;'><i class='fas fa-edit'></i></a></td>";
 
             // echo "<td><i class='fas fa-edit' ></i></td>";
 
@@ -99,8 +120,11 @@
             
         }
         echo "</table>";
+        
         ?>
-    </p>
+                <a href="./index.php"><input type="button" value=" Insert Data" class="btn"></a>
+        
+    
 </body>
 
 </html>
