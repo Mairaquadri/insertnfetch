@@ -10,7 +10,7 @@
     <style>
         body {
             width: 100%;
-            height: 98vh;
+            /* height: 98vh; */
             background: url("./image.jpg") center/cover no-repeat;
             overflow-x: hidden;
             /* overflow-y: hidden; */
@@ -98,6 +98,7 @@ a{
         echo "<th>Phone Number</th>";
         echo "<th>Gender</th>";
         echo "<th colspan='2'>Actions</th>";
+        echo "<th>picture</th>";
         echo "</tr>";
 
         while ($row = $data->fetch_assoc()) {
@@ -108,13 +109,11 @@ a{
             echo "<td><span class='email_style'>" . $row["email"] . "</span></td>";
             echo "<td>" . $row["password"] . "</td>";
             echo "<td>" . $row["phone_number"] . "</td>";
-            echo "<td>" . $row["gender"] . "</td>";
-            // echo "<td><a href='delete.php?idth= echo '<td>' . $row['id'] . '</td>';
-            // '><i class='fas fa-x'></i></a></td>";
+            echo "<td>" . $row["gender"] . "</td>"; 
             echo "<td><a href='delete.php?idth=" . $row['id'] . "' style='color: white;'><i class='fas fa-x'></i></a></td>";
             echo "<td><a href='edit.php?id=" . $row['id'] . "' style='color: white;'><i class='fas fa-edit'></i></a></td>";
+            echo '<td><img src="' . $row["picture"] . '" alt="Image" style="width:100px; height:100px;"></td>';
 
-            // echo "<td><i class='fas fa-edit' ></i></td>";
 
            
             

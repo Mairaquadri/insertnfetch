@@ -8,8 +8,15 @@ if(isset($_POST['register'])){
     $pass=$_POST['password'];
     $phonenum=$_POST['phone'];
     $gender=$_POST['gender'];
+    $ui = './pictures/' . basename($_FILES['image']['name']);
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], $ui)) {
 
-$myquery="INSERT INTO form (first_name,last_name,email,password,phone_number, gender) VALUES ('$fname','$lname','$email','$pass','$phonenum','$gender')";
+echo"image uploaded";
+    $fname=$_POST['first'];
+$myquery="INSERT INTO form(first_name,last_name,email,password,phone_number,gender,picture) VALUES ('$fname','$lname','$email','$pass','$phonenum','$gender','$ui')";
+echo '<script>
+            alert("image upload sucessfully");
+          </script>';
 
 $result=mysqli_query($con,$myquery);
 if ($result) {
@@ -23,7 +30,10 @@ if ($result) {
 }
 
 }
-
+else{
+echo"error uploading file";
+}
+}
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +49,7 @@ if ($result) {
 <style>
 .main {
     width: 100%;
-    height: 98vh;
+    height: 100vh;
     background: url("./image.jpg") center/cover no-repeat;
     overflow-x: hidden;
     overflow-y: hidden;
@@ -52,16 +62,15 @@ form{
     border: 2px solid rgba(255, 255, 255, 0.1);
     background: rgba(255, 255, 255, 0.1);
     
-   width: 850px;
-    height: 600px;
-    /* border:none; */
+  min-width: 900px;
+   /* min-height: 600px; */
     backdrop-filter: blur(50px); 
     border-radius: 10px; 
     text-align:center;
-    
+    padding-bottom: 30px;
 }
 h1{
-    margin-top: 70px;
+    margin-top: 30px;
     color: white;
 }
 
@@ -134,7 +143,7 @@ input {
 
 <body>
     <div class="main">
-        <form action="index.php" method="POST">
+        <form action="index.php" method="POST" enctype= "multipart/form-data" >
             <h1>REGISTRATION FORM</h1>
 
             <div class="div1">
@@ -172,14 +181,11 @@ input {
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                         </select>
-                        <!-- <input type="text" placeholder="please enter your gender" name="gender"> -->
                     </div>
-                    <!-- <div class="input_field" id="name_div">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" placeholder="please enter your gender" name="gender">
-                    </div> -->
+                    
                     
                 </div>
+                <input type="file" name="image" class="btn">
                 <input type="submit" value="submit"name="register" class="btn">
                 <a href="./showdata.php"><input type="button" value="Show Data"name="showdata" class="btn"></a>
         </form>

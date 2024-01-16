@@ -39,11 +39,11 @@ $row = $result->fetch_assoc();
 <style>
 .main {
     width: 100%;
-    height: 98vh;
+    height: 100vh;
     background: url("./image.jpg") center/cover no-repeat;
     overflow-x: hidden;
     overflow-y: hidden;
-    background-position: center 35%; /* Move the background image to the center horizontally and to the top vertically */
+    background-position: center 35%; 
     display: flex;
     justify-content: center;
     align-items:center;
@@ -52,16 +52,15 @@ form{
     border: 2px solid rgba(255, 255, 255, 0.1);
     background: rgba(255, 255, 255, 0.1);
     
-   width: 850px;
-    height: 600px;
-    /* border:none; */
+  min-width: 900px;
+   /* min-height: 600px; */
     backdrop-filter: blur(50px); 
     border-radius: 10px; 
     text-align:center;
-    
+    padding-bottom: 30px;
 }
 h1{
-    margin-top: 70px;
+    margin-top: 30px;
     color: white;
 }
 
@@ -132,7 +131,7 @@ input {
 
 <body>
     <div class="main">
-        <form action="editprocess.php?id=<?php echo $row['id']?>" method="POST">
+        <form action="editprocess.php?id=<?php echo $row['id']?>" method="POST"  enctype= "multipart/form-data" >
             <h1>REGISTRATION FORM</h1>
 
             <div class="div1">
@@ -167,18 +166,18 @@ input {
                     <div class="input_field" id="name_div">
                         <i class="fa-solid fa-user"></i>
                         <select name="gender" id="name_div">
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                        <!-- <input type="text" placeholder="please enter your gender" name="gender"> -->
+    <option value="Male" <?php echo ($row['gender'] == 'Male') ? 'selected' : ''; ?>>Male</option>
+    <option value="Female" <?php echo ($row['gender'] == 'Female') ? 'selected' : ''; ?>>Female</option>
+</select>
+
+                       
                     </div>
-                    <!-- <div class="input_field" id="name_div">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" placeholder="please enter your gender" name="gender">
-                    </div> -->
+                  
                     
                 </div>
-                <input type="submit" value="Update"name="register" class="btn">
+                <input type="file" name="image" class="btn" value="<?php echo $row['picture']?>">
+
+                <input type="submit" value="Update"name="register" class="btn" >
                 <a href="./showdata.php"><input type="button" value="show Data"name="showdata" class="btn"></a>
         </form>
     </div>
